@@ -16,6 +16,7 @@ const Imperial = () => {
 
   const [result, setResult] = useState("")
   const [deg, setDeg] = useState("");
+  const [bmiProgress1, setBmiProgress1] = useState("");
 
   const heightFtInputRef = useRef(null);
   const inchInputRef = useRef(null);
@@ -32,11 +33,8 @@ const Imperial = () => {
     if (heightFtInput && incheInput && weightPoundInput) {
 
       let bmi = (( weightPoundInput / (( heightFtInput * 12 + incheInput) * ( heightFtInput * 12 + incheInput )) ) * 703 ).toFixed(2);
-      // let bmi1 = (( 110 / (( 5 * 12 + 3) * ( 5 * 12 + 3)) ) * 703 ).toFixed(2);
 
       console.log(bmi);
-
-      // console.log(bmi1);
   
       if (bmi < 18.5) {
         setDeg("UnderWeight");
@@ -51,7 +49,8 @@ const Imperial = () => {
       }
   
       console.log("Your BMI is: " + bmi);
-      setResult("Your BMI is: " + bmi)
+      setResult("Your BMI is: " + Number(bmi));
+      setBmiProgress1(Number(bmi));
     } else {
       console.log("Please enter both weight and height.");
       setResult("Please enter both weight and height.");
@@ -139,9 +138,9 @@ const Imperial = () => {
         <div id="progress">
           <div style={{textAlign:"center"}}>
             <Progress
-              percent={60}
+              percent={bmiProgress1}
               steps={5}
-              strokeColor={[green[6], green[6], red[5], blue[4]]}
+              strokeColor={[green[6], yellow[4], red[5], blue[4], purple[6]]}
             />
           </div>
         </div>
