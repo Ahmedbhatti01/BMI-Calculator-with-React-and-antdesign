@@ -22,17 +22,21 @@ const Imperial = () => {
   const weightPoundInputRef = useRef(null);
 
   const calculateBmiImperialHandler = () => {
-    let heightFtInput = heightFtInputRef.current.input.value;
-    let incheInput = inchInputRef.current.input.value;
-    let weightPoundInput = weightPoundInputRef.current.input.value;
+    let heightFtInput = Number(heightFtInputRef.current.input.value);
+    let incheInput = Number(inchInputRef.current.input.value);
+    let weightPoundInput = Number(weightPoundInputRef.current.input.value);
     console.log(heightFtInput);
     console.log(incheInput);
     console.log(weightPoundInput);
 
     if (heightFtInput && incheInput && weightPoundInput) {
 
-      let bmi = ((weightPoundInput * 0.454) / ((( heightFtInput * 12 ) + inchInputRef ) * (( heightFtInput * 12 ) + inchInputRef ))) * 703;
+      let bmi = (( weightPoundInput / (( heightFtInput * 12 + incheInput) * ( heightFtInput * 12 + incheInput )) ) * 703 ).toFixed(2);
+      // let bmi1 = (( 110 / (( 5 * 12 + 3) * ( 5 * 12 + 3)) ) * 703 ).toFixed(2);
+
       console.log(bmi);
+
+      // console.log(bmi1);
   
       if (bmi < 18.5) {
         setDeg("UnderWeight");
